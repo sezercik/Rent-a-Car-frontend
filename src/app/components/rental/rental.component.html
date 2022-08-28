@@ -1,0 +1,26 @@
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Car Name</td>
+            <td>Brand Name</td>
+            <td>Rent Date</td>
+            <td>Return Date</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let rental of rentalsDetails">
+            <td>{{rental.rentalId}}</td>
+            <td>{{rental.customerName}}</td>
+            <td>{{rental.carName}}</td>
+            <td>{{rental.brandName}}</td>
+            <td>{{rental.rentDate}}</td>
+            <td *ngIf="rental.returnDate != null; else nullReturnDate">{{rental.returnDate}}</td>
+            <ng-template #nullReturnDate>
+                <td>Halen Kiralık</td>
+            </ng-template>
+
+        </tr>
+    </tbody>
+</table>
