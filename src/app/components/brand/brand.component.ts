@@ -9,6 +9,7 @@ import { BrandService } from 'src/app/services/brand.service';
 })
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];
+  currentBrand: Brand = { id: 0, name: '' };
   constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
@@ -18,5 +19,29 @@ export class BrandComponent implements OnInit {
     this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
     });
+  }
+
+  setBrandClass(brand: Brand) {
+    this.currentBrand = brand;
+  }
+
+  getBrandClass(brand: Brand) {
+    if (this.currentBrand.id == brand.id) {
+      return 'list-group-item list-group-item-action list-group-item-success active';
+    } else {
+      return 'list-group-item list-group-item-action list-group-item-success';
+    }
+  }
+
+  getAllBrandClass() {
+    if (this.currentBrand.id == 0) {
+      return 'list-group-item list-group-item-action list-group-item-success active';
+    } else {
+      return 'list-group-item list-group-item-action list-group-item-success';
+    }
+  }
+
+  cleanCurrentBrand() {
+    this.currentBrand = { id: 0, name: '' };
   }
 }

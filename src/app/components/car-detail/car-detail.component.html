@@ -1,0 +1,60 @@
+<!-- https://localhost:44377/uploads/carimages/{{carDetails.imagePath}} -->
+<!-- <div class="row">
+    <div class="col-md-5" *ngIf="imageLoaded == true">
+        <div class="images-gallery">
+            <img (click)="setCurrentImage(image)" *ngFor="let image of carImages"
+                src="https://localhost:44377/uploads/carimages/{{image.imagePath}}" [class]="getImagesClass(image)">
+        </div>
+    </div>
+    <div class="col-md-7"></div>
+</div> -->
+<div id="imageSlider" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button *ngFor="let image of carImages; let i = index" type="button" data-bs-target="#carouselExampleIndicators"
+            attr.data-bs-slide-to="{{ i }}" [class]="getButtonClass(image)" aria-current="true"></button>
+    </div>
+    <div class="carousel-inner">
+        <div *ngFor="let carImage of carImages; index as i; first as firstImage" [ngClass]="{ active: firstImage }"
+            class="carousel-item active" data-bs-interval="2000">
+            <img src="{{ imageRoot }}{{ carImage.imagePath }}" class="d-block w-100 car-image" />
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Önceki</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Sonraki</span>
+    </button>
+</div>
+<div class="table-responsive-md mt-3">
+    <table class="table table-striped table-hover table-bordered">
+        <thead *ngIf="carDetails">
+            <tr>
+                <th>Marka</th>
+                <td>{{ carDetails.brandName }}</td>
+            </tr>
+            <tr>
+                <th>Renk</th>
+                <td>{{ carDetails.colorName }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ carDetails.carName }}</td>
+            </tr>
+            <tr>
+                <th>Yıl</th>
+                <td>{{ carDetails.modelYear }}</td>
+            </tr>
+            <tr>
+                <th>Günlük ücret</th>
+                <td>{{ carDetails.dailyPrice }} ₺</td>
+            </tr>
+            <tr>
+                <th>Açıklama</th>
+                <td>{{ carDetails.description }}</td>
+            </tr>
+        </thead>
+    </table>
+</div>

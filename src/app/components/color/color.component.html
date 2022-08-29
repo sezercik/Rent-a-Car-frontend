@@ -1,6 +1,8 @@
 <h6>Colors</h6>
 <div class="list-group">
-    <a *ngFor="let color of colors" class="list-group-item list-group-item-action list-group-item-success">
+    <a routerLink="/" [class]="getAllColorClass()" (click)="cleanCurrentColor()">Tüm Renkler</a>
+    <a *ngFor="let color of colors" [class]="getColorClass(color)" routerLink="/cars/color/{{color.id}}"
+        (click)="setColorClass(color)">
         {{color.name}}
     </a>
 </div>
